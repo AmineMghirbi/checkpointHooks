@@ -1,0 +1,27 @@
+.nav__container{
+    background-color: hsl(0, 0%, 0%);
+    color: white;
+    padding: .6rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav__button{
+    background-color: hsl(51, 100%, 50%);
+    border: none;
+    border-radius: 3px;
+    margin-right: .7em;
+    cursor: pointer;
+    color: black;
+    font-weight: 500;
+}
+
+.nav__button:hover{
+    transform: scale(1.1);
+    transition: ease-in ;
+    border: none
+}
+
+.nav__title{
+    cursor: pointer;
+}
