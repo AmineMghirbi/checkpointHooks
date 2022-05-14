@@ -5,18 +5,13 @@ import { useState } from 'react';
 import MovieList from './Components/MovieList/MovieList';
 import MovieForm from './Components/MovieForm/MovieForm';
 import InitialDataSet from './Data/data.json';
+import { Route, Routes } from 'react-router-dom';
+import MovieDescription from './Components/MovieDescription/MovieDescription';
 
 function App() {
-  const [home,SetHome]=useState(0)
   const [moviesState,SetMovies]=useState(InitialDataSet);
   const [moviesFiltred,SetMovieFilter]=useState(InitialDataSet);
   
-  const toggleHome=()=>{
-    SetHome(0);
-  }
-  const toggleForm=()=>{
-    SetHome(1);
-  }
   const addMovie=(movie)=>{
     SetMovies([...moviesState,movie])
     SetMovieFilter([...moviesState,movie])
@@ -42,8 +37,13 @@ function App() {
   }
   return (
     <>
-      <Navbar toggleHome={toggleHome} toggleForm={toggleForm}/>
-      {home==0?<MovieList movies={moviesFiltred} filterByName={filterMovieByName} filterByRating={filterMovieByRating}/>:<MovieForm addMovie={addMovie}/>}
+      <Navbar/>
+      <Routes>
+        <Route path='/' element={<MovieList movies={moviesFiltred} filterByName={filterMovieByName} filterByRating={filterMovieByRating}/>}></Route>
+        <Route path='/movies' element={<MovieList movies={moviesFiltred} filterByName={filterMovieByName} filterByRating={filterMovieByRating}/>}></Route>
+        <Route path='/movies/:name' element={<MovieDescription movies={moviesState}/>}></Route>
+        <Route path='/movieaddd' element={<MovieForm addMovie={addMovie}/>}></Route>
+      </Routes>
     </>
 
   );
